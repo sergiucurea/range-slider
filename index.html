@@ -5,12 +5,21 @@
     </head>
     <body>
         <header></header>
-        <h1>RANGE SLIDER</h1>
+        <h1>RANGE SLIDER with input tag:</h1>
         <div class="range-container">
             <input type="range" min="1" max="100" value="50" class="slider" id="theRange">
             <p>Value:<span id="theValue"></span></p>
         </div>
+        <h1>RANGE SLIDER without input tag & 2 handles:</h1>
+        <div class="range-container">
+            <div class="rg-back" id="range-back">
+                <div class="rg-between" id="between"></div>
+                <div class="handle" id="handle-one"></div>
+                <div class="handle" id="handle-two"></div>
+            </div>
+        </div>
         <footer></footer>
     </body>
+
     <script src="javascript.js"></script>
 </html>

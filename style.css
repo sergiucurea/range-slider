@@ -22,6 +22,7 @@ h1 {
 .range-container {
 
     width:100%;
+    position: relative;
 }
 
 .range-container p {
@@ -51,7 +52,7 @@ h1 {
 }
   
 .slider::-webkit-slider-thumb {
-    
+
     -webkit-appearance: none;
     appearance:none;
     height:50px;
@@ -60,4 +61,64 @@ h1 {
     border-style:solid;
     background: #4CAF50;
     border-radius:25px;
+}
+
+:root {
+    --handle-one-pos:25%;
+    --handle-two-pos:75%;
+}
+
+.rg-back{
+
+    display:block;
+    height:25px;
+    background-color:white;
+    width:75%;
+    opacity:0.7;
+    margin:auto;
+    border-radius:25px;
+    position:relative;
+    border-style:solid;
+    border-color:#424242;
+}
+
+.rg-between{
+
+    display:block;
+
+    height:25px;
+    margin-left:calc(var(--handle-one-pos) + 15px);
+    width:calc(var(--handle-two-pos) - var(--handle-one-pos));
+    background-color:#424242;
+
+}
+
+.handle{
+
+    position:absolute;
+    height:45px;
+    width:45px;
+    background-color:#4CAF50;
+    border-radius:25px;
+    border-color:white;
+    border-style:solid;
+    transition: ease 0.1s;
+
+}
+
+.handle#handle-one{
+
+    left:var(--handle-one-pos);
+    top:-15px;
+}
+
+.handle#handle-two{
+
+    left:var(--handle-two-pos);
+    top:-15px;
+}
+
+.rg-back:hover {
+
+    opacity:1;
 }
