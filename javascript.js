@@ -61,8 +61,8 @@ function getPos(handleSelect) {
         handleTwo = handleTwo.replace('%', '');
         precentageClick = precentageClick - circlePrecentage / 2;
 
-        if (precentageClick > 100 - circlePrecentage) precentageClick = 100 - circlePrecentage;
-        if (precentageClick < 0 - circlePrecentage) precentageClick = 0 - circlePrecentage;
+        if (precentageClick > 99) precentageClick = 99;
+        if (precentageClick < 0) precentageClick = 0;
 
         switch (handleSelect) {
 
@@ -100,7 +100,7 @@ function getPos(handleSelect) {
             document.documentElement.style.setProperty('--right', handleTwo + "%");
         }
 
-        display1.innerHTML = parseInt(handleOne) + parseInt(circlePrecentage);
-        display2.innerHTML = parseInt(handleTwo) + parseInt(circlePrecentage);
+        display1.innerHTML = parseInt(handleOne);
+        display2.innerHTML = parseInt(handleTwo);
     }
 }

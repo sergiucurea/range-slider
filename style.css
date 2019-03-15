@@ -32,7 +32,7 @@ h1 {
 }
 
 :root {
-    
+
     --handle-one-pos:25%;
     --handle-two-pos:75%;
     --left:var(--handle-one-pos);
@@ -43,23 +43,30 @@ h1 {
 
 .rg-back {
 
-    display:block;
+    width:75%;
+    margin:auto;
+    position:relative;
+}
+
+.rg-back-seen {
+
+    position:absolute;
     height:25px;
     background-color:white;
-    width:75%;
+    width:100%;
     opacity:0.7;
-    margin:auto;
+    left:22.5px;
+    top:0;
     border-radius:25px;
-    position:relative;
     border-style:solid;
     border-color:#424242;
 }
 
-.rg-between{
+.rg-between { 
 
-    display:block;
-
+    position: absolute;
     height:25px;
+    top:3px;
     margin-left:calc(var(--left) + 15px);
     width:calc(var(--right) - var(--left));
     background-color:#424242;
@@ -82,14 +89,14 @@ h1 {
 .handle#handle-one {
 
     left:var(--handle-one-pos);
-    top:-15px;
+    top:-12px;
     z-index:var(--z-index-1);
 }
 
-.handle#handle-two{
+.handle#handle-two {
 
     left:var(--handle-two-pos);
-    top:-15px;
+    top:-12px;
     z-index:var(--z-index-2);
 }
 
