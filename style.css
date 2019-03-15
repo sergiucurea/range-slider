@@ -66,9 +66,11 @@ h1 {
 :root {
     --handle-one-pos:25%;
     --handle-two-pos:75%;
+    --left:var(--handle-one-pos);
+    --right:var(--handle-two-pos);
 }
 
-.rg-back{
+.rg-back {
 
     display:block;
     height:25px;
@@ -87,13 +89,13 @@ h1 {
     display:block;
 
     height:25px;
-    margin-left:calc(var(--handle-one-pos) + 15px);
-    width:calc(var(--handle-two-pos) - var(--handle-one-pos));
+    margin-left:calc(var(--left) + 15px);
+    width:calc(var(--right) - var(--left));
     background-color:#424242;
-
+    transition: ease 0.1s;
 }
 
-.handle{
+.handle {
 
     position:absolute;
     height:45px;
@@ -106,7 +108,7 @@ h1 {
 
 }
 
-.handle#handle-one{
+.handle#handle-one {
 
     left:var(--handle-one-pos);
     top:-15px;
@@ -121,4 +123,17 @@ h1 {
 .rg-back:hover {
 
     opacity:1;
+}
+
+.row {
+
+    display:flex;
+    flex-direction: row;
+    justify-content: center;    
+}
+
+.row p {
+
+    padding:1%;
+    width:50%;
 }
