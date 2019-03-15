@@ -1,116 +1,106 @@
 
 const style = getComputedStyle(document.body);
-var total_slider_width = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
-var circle_precentage = (45 / total_slider_width) * 100;
-var handle_one = style.getPropertyValue('--handle-one-pos');
-var handle_two = style.getPropertyValue('--handle-two-pos');
-const display_1 = document.getElementById("pos_handler_1");
-const display_2 = document.getElementById("pos_handler_2");
-const slider_back = document.getElementById("range-back");
-const handle_one_listener = document.getElementById("handle-one");
-const handle_two_listener = document.getElementById("handle-two");
+var totalSliderWidth = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
+var circlePrecentage = (45 / totalSliderWidth) * 100;
+var handleOne = style.getPropertyValue('--handle-one-pos');
+var handleTwo = style.getPropertyValue('--handle-two-pos');
+const display1 = document.getElementById("pos-handler-1");
+const display2 = document.getElementById("pos-handler-2");
+const sliderBack = document.getElementById("range-back");
+const handleOneListener = document.getElementById("handle-one");
+const handleTwoListener = document.getElementById("handle-two");
 const getPos1 = getPos(1);
 const getPos2 = getPos(2);
 const getPos3 = getPos(0);
 
-display_1.innerHTML = parseInt(handle_one) + parseInt(circle_precentage);
-display_2.innerHTML = parseInt(handle_two) + parseInt(circle_precentage);
-slider_back.addEventListener("click", getPos(0));
-handle_one_listener.addEventListener("mousedown", handle_move(1));
-handle_two_listener.addEventListener("mousedown", handle_move(2));
+display1.innerHTML = parseInt(handleOne) + parseInt(circlePrecentage);
+display2.innerHTML = parseInt(handleTwo) + parseInt(circlePrecentage);
+sliderBack.addEventListener("click", getPos(0));
+handleOneListener.addEventListener("mousedown", handleMove(1));
+handleTwoListener.addEventListener("mousedown", handleMove(2));
 
-function handle_move(handle_select) {
+function handleMove(handleSelect) {
 
-    switch (handle_select) {
+    switch (handleSelect) {
         case 1:
             return function (event) {
                 document.addEventListener("mousemove", getPos1);
             }
-            break;
         case 2:
             return function (event) {
                 document.addEventListener("mousemove", getPos2);
             }
-            break;
         default:
             return function (event) {
                 document.addEventListener("mousemove", getPos3);
             }
-            break;
     }
 }
 
-document.addEventListener("mouseup", remove_func);
+document.addEventListener("mouseup", removeFunc);
 
-function remove_func(event) {
+function removeFunc(event) {
 
     document.removeEventListener("mousemove", getPos1);
     document.removeEventListener("mousemove", getPos2);
     document.removeEventListener("mousemove", getPos3);
 }
 
-function getPos(handle_select) {
+function getPos(handleSelect) {
 
     return function (event) {
 
-        handle_one = style.getPropertyValue('--handle-one-pos');
-        handle_two = style.getPropertyValue('--handle-two-pos');
-        total_slider_width = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
+        handleOne = style.getPropertyValue('--handle-one-pos');
+        handleTwo = style.getPropertyValue('--handle-two-pos');
+        totalSliderWidth = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
         let relativeX = event.pageX - window.innerWidth / 8; //caluclate x coordinate in range slider
-        let precentage_click = (relativeX / total_slider_width) * 100; //calcualte the precentage of click position in div
-        circle_precentage = (45 / total_slider_width) * 100;//calculate the %width of the circle 
+        let precentageClick = (relativeX / totalSliderWidth) * 100; //calcualte the precentage of click position in div
+        circlePrecentage = (45 / totalSliderWidth) * 100;//calculate the %width of the circle 
 
-        handle_one = handle_one.replace('%', '');
-        handle_two = handle_two.replace('%', '');
-        precentage_click = precentage_click - circle_precentage / 2;
+        handleOne = handleOne.replace('%', '');
+        handleTwo = handleTwo.replace('%', '');
+        precentageClick = precentageClick - circlePrecentage / 2;
 
-        //document.documentElement.style.setProperty('--handle-one-pos',precentage_click+"%");
-        if (precentage_click > 100 - circle_precentage) precentage_click = 100 - circle_precentage;
-        if (precentage_click < 0 - circle_precentage) precentage_click = 0 - circle_precentage;
+        if (precentageClick > 100 - circlePrecentage) precentageClick = 100 - circlePrecentage;
+        if (precentageClick < 0 - circlePrecentage) precentageClick = 0 - circlePrecentage;
 
-        switch (handle_select) {
+        switch (handleSelect) {
 
             case 1:
-                document.documentElement.style.setProperty('--handle-one-pos', precentage_click + "%");
+                document.documentElement.style.setProperty('--handle-one-pos', precentageClick + "%");
                 document.documentElement.style.setProperty('--z-index-1', 3);
                 document.documentElement.style.setProperty('--z-index-2', 2);
-                //console.log("I am in case 1");
                 break;
 
             case 2:
-                document.documentElement.style.setProperty('--handle-two-pos', precentage_click + "%");
+                document.documentElement.style.setProperty('--handle-two-pos', precentageClick + "%");
                 document.documentElement.style.setProperty('--z-index-1', 2);
                 document.documentElement.style.setProperty('--z-index-2', 3);
-                //console.log("I am in case 2");
                 break;
 
             default:
-                if (Math.abs(precentage_click - parseFloat(handle_two)) > Math.abs(precentage_click - parseFloat(handle_one))) {
-                    document.documentElement.style.setProperty('--handle-one-pos', precentage_click + "%");
+                if (Math.abs(precentageClick - parseFloat(handleTwo)) > Math.abs(precentageClick - parseFloat(handleOne))) {
+                    document.documentElement.style.setProperty('--handle-one-pos', precentageClick + "%");
                 } else {
-                    document.documentElement.style.setProperty('--handle-two-pos', precentage_click + "%");
+                    document.documentElement.style.setProperty('--handle-two-pos', precentageClick + "%");
                 }
-                //console.log("I am in case default");
                 break;
         }
 
-        handle_one = style.getPropertyValue('--handle-one-pos');
-        handle_two = style.getPropertyValue('--handle-two-pos');
-        handle_one = handle_one.replace('%', '');
-        handle_two = handle_two.replace('%', '');
-        //console.log("handle1="+handle_one+" handle2="+handle_two);
+        handleOne = style.getPropertyValue('--handle-one-pos');
+        handleTwo = style.getPropertyValue('--handle-two-pos');
+        handleOne = handleOne.replace('%', '');
+        handleTwo = handleTwo.replace('%', '');
 
-        if (parseFloat(handle_one) >= parseFloat(handle_two)) {
-            document.documentElement.style.setProperty('--right', handle_one + "%");
-            document.documentElement.style.setProperty('--left', handle_two + "%");
+        if (parseFloat(handleOne) >= parseFloat(handleTwo)) {
+            document.documentElement.style.setProperty('--right', handleOne + "%");
+            document.documentElement.style.setProperty('--left', handleTwo + "%");
         } else {
-            document.documentElement.style.setProperty('--left', handle_one + "%");
-            document.documentElement.style.setProperty('--right', handle_two + "%");
+            document.documentElement.style.setProperty('--left', handleOne + "%");
+            document.documentElement.style.setProperty('--right', handleTwo + "%");
         }
 
-
-        display_1.innerHTML = parseInt(handle_one) + parseInt(circle_precentage);
-        display_2.innerHTML = parseInt(handle_two) + parseInt(circle_precentage);
+        display1.innerHTML = parseInt(handleOne) + parseInt(circlePrecentage);
+        display2.innerHTML = parseInt(handleTwo) + parseInt(circlePrecentage);
     }
-    // console.log( circle_precentage+" "+relativeX+" "+window.innerWidth+" "+total_slider_width+" "+precentage_click);
 }
