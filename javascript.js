@@ -89,11 +89,15 @@ function getPos(handle_select){
 
             case 1:
                 document.documentElement.style.setProperty('--handle-one-pos',precentage_click+"%");
+                document.documentElement.style.setProperty('--z-index-1',3);
+                document.documentElement.style.setProperty('--z-index-2',2);
             //console.log("I am in case 1");
             break;
             
             case 2:
                 document.documentElement.style.setProperty('--handle-two-pos',precentage_click+"%");
+                document.documentElement.style.setProperty('--z-index-1',2);
+                document.documentElement.style.setProperty('--z-index-2',3);
             //console.log("I am in case 2");
             break;
 

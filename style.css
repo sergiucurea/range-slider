@@ -68,6 +68,8 @@ h1 {
     --handle-two-pos:75%;
     --left:var(--handle-one-pos);
     --right:var(--handle-two-pos);
+    --z-index-1:3;
+    --z-index-2:2;
 }
 
 .rg-back {
@@ -112,12 +114,14 @@ h1 {
 
     left:var(--handle-one-pos);
     top:-15px;
+    z-index:var(--z-index-1);
 }
 
 .handle#handle-two{
 
     left:var(--handle-two-pos);
     top:-15px;
+    z-index:var(--z-index-2);
 }
 
 .rg-back:hover {
