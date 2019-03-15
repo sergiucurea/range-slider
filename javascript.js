@@ -16,19 +16,19 @@ slider.oninput = function(){
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 ///without input range and 2 handles//////////////////////////////////////
-var style = getComputedStyle(document.body);
+const style = getComputedStyle(document.body);
 var total_slider_width=window.innerWidth/4*3; //calculate the width of the div (75% precent of window)
 var circle_precentage=(45/total_slider_width)*100;
 var handle_one=style.getPropertyValue('--handle-one-pos');
 var handle_two=style.getPropertyValue('--handle-two-pos');
-var display_1=document.getElementById("pos_handler_1");
-var display_2=document.getElementById("pos_handler_2");
-var slider_back = document.getElementById("range-back");
-var handle_one_listener=document.getElementById("handle-one");
-var handle_two_listener=document.getElementById("handle-two");
-var getPos1=getPos(1); 
-var getPos2=getPos(2);
-var getPos3=getPos(0);
+const display_1=document.getElementById("pos_handler_1");
+const display_2=document.getElementById("pos_handler_2");
+const slider_back = document.getElementById("range-back");
+const handle_one_listener=document.getElementById("handle-one");
+const handle_two_listener=document.getElementById("handle-two");
+const getPos1=getPos(1); 
+const getPos2=getPos(2);
+const getPos3=getPos(0);
 
 display_1.innerHTML=parseInt(handle_one)+parseInt(circle_precentage);
 display_2.innerHTML=parseInt(handle_two)+parseInt(circle_precentage);
@@ -73,8 +73,8 @@ function getPos(handle_select){
         handle_one=style.getPropertyValue('--handle-one-pos');
         handle_two=style.getPropertyValue('--handle-two-pos');
         total_slider_width=window.innerWidth/4*3; //calculate the width of the div (75% precent of window)
-        var relativeX=event.pageX-window.innerWidth/8; //caluclate x coordinate in range slider
-        var precentage_click=(relativeX/total_slider_width)*100; //calcualte the precentage of click position in div
+        let relativeX=event.pageX-window.innerWidth/8; //caluclate x coordinate in range slider
+        let precentage_click=(relativeX/total_slider_width)*100; //calcualte the precentage of click position in div
         circle_precentage=(45/total_slider_width)*100;//calculate the %width of the circle 
 
         handle_one=handle_one.replace('%','');
