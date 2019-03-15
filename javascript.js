@@ -83,7 +83,7 @@ function getPos(handle_select){
 
         //document.documentElement.style.setProperty('--handle-one-pos',precentage_click+"%");
         if (precentage_click>100-circle_precentage) precentage_click=100-circle_precentage;
-        if (precentage_click<0) precentage_click=0-circle_precentage;
+        if (precentage_click<0-circle_precentage) precentage_click=0-circle_precentage;
 
         switch(handle_select){
 
