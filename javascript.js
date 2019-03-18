@@ -1,52 +1,52 @@
 
 const style = getComputedStyle(document.body);
 var totalSliderWidth = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
-var circlePrecentage = (45 / totalSliderWidth) * 100;
-var handleOne = style.getPropertyValue('--handle-one-pos');
-var handleTwo = style.getPropertyValue('--handle-two-pos');
+let circlePrecentage = (45 / totalSliderWidth) * 100;
+let handleOne = style.getPropertyValue('--handle-one-pos');
+let handleTwo = style.getPropertyValue('--handle-two-pos');
 const display1 = document.getElementById("pos-handler-1");
 const display2 = document.getElementById("pos-handler-2");
 const sliderBack = document.getElementById("range-back");
 const handleOneListener = document.getElementById("handle-one");
 const handleTwoListener = document.getElementById("handle-two");
-const getPos1 = getPos(1);
-const getPos2 = getPos(2);
-const getPos3 = getPos(0);
+const updateHandlePosition1 = updateHandlePosition(1);
+const updateHandlePosition2 = updateHandlePosition(2);
+const updateHandlePosition3 = updateHandlePosition(0);
 
 display1.innerHTML = parseInt(handleOne) + parseInt(circlePrecentage);
 display2.innerHTML = parseInt(handleTwo) + parseInt(circlePrecentage);
-sliderBack.addEventListener("click", getPos(0));
-handleOneListener.addEventListener("mousedown", handleMove(1));
-handleTwoListener.addEventListener("mousedown", handleMove(2));
+sliderBack.addEventListener("click", updateHandlePosition(0));
+handleOneListener.addEventListener("mousedown", handleMouseMove(1));
+handleTwoListener.addEventListener("mousedown", handleMouseMove(2));
 
-function handleMove(handleSelect) {
+function handleMouseMove(handleSelect) {
 
     switch (handleSelect) {
         case 1:
             return function (event) {
-                document.addEventListener("mousemove", getPos1);
+                document.addEventListener("mousemove", updateHandlePosition1);
             }
         case 2:
             return function (event) {
-                document.addEventListener("mousemove", getPos2);
+                document.addEventListener("mousemove", updateHandlePosition2);
             }
         default:
             return function (event) {
-                document.addEventListener("mousemove", getPos3);
+                document.addEventListener("mousemove", updateHandlePosition3);
             }
     }
 }
 
-document.addEventListener("mouseup", removeFunc);
+document.addEventListener("mouseup", removeEventListener);
 
-function removeFunc(event) {
+function removeEventListener(event) {
 
-    document.removeEventListener("mousemove", getPos1);
-    document.removeEventListener("mousemove", getPos2);
-    document.removeEventListener("mousemove", getPos3);
+    document.removeEventListener("mousemove", updateHandlePosition1);
+    document.removeEventListener("mousemove", updateHandlePosition2);
+    document.removeEventListener("mousemove", updateHandlePosition3);
 }
 
-function getPos(handleSelect) {
+function updateHandlePosition(handleSelect) {
 
     return function (event) {
 
