@@ -1,6 +1,6 @@
 
 const style = getComputedStyle(document.body);
-var totalSliderWidth = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
+let totalSliderWidth = window.innerWidth / 4 * 3; //calculate the width of the div (75% precent of window)
 let circlePrecentage = (45 / totalSliderWidth) * 100;
 let handleOne = style.getPropertyValue('--handle-one-pos');
 let handleTwo = style.getPropertyValue('--handle-two-pos');
